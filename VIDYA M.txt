@@ -1,0 +1,36 @@
+VIDYA M
+1980vidyam@gmail.com | github.com/Vidya201 | LinkedIn
+Computer Science undergraduate (CGPA 9.45) with hands-on experience building full-stack web applications, REST APIs, and ML-driven tools;
+a consistent academic topper and active competitive programmer. EDUCATION
+B.E. in Computer Science & Engineering — Dayananda Sagar College of Engineering (VTU) | CGPA: 9.45 · 2024 – 2028 (Expected)
+12th Grade (PCM) — Mangalore Independent PU College | 95.83% · Karnataka State Board · 2024
+10th Grade — Arwin High School | 95.68% · Karnataka State Board · 2022
+TECHNICAL SKILLS
+Languages: Python, C, C++, JavaScript, HTML, CSS, SQL
+Frameworks & Libraries: FastAPI, Flask, Streamlit, scikit-learn (TF-IDF), LangChain
+Databases: SQLite, PostgreSQL
+DevOps, Cloud & Tools: Git, GitHub, VS Code, Google Cloud Platform, Render, JSearch API
+Core Concepts: RESTful APIs, Real-Time Dashboards, Role-Based Access Control (RBAC), Log Analysis & Alerting, ETA Tracking, Cohort
+Benchmarking, Web Scraping
+Problem Solving: 3-Star on HackerRank · 56+ problems solved on LeetCode (Python, DSA)
+Relevant Coursework: Data Structures & Algorithms, Design and Analysis of Algorithms, Object-Oriented Programming (OOPs), Database
+Management Systems (DBMS), Operating Systems, Python Programming
+PROJECTS
+Full-Stack Skill Gap Analyzer (Ongoing) FastAPI, Streamlit, scikit-learn, SQLite, Render
+● Architected an end-to-end web application that ingests live job postings via the JSearch API and applies TF-IDF vectorization (scikitlearn) to extract required technical skills and compute a personalized skill-gap score against a user's uploaded resume. ● Built a robust REST API backend with FastAPI for efficient data processing, paired with an interactive Streamlit frontend delivering
+real-time gap visualization and actionable upskilling recommendations. ● Implemented SQLite-based cohort benchmarking to compare user profiles against industry peers; deployed the full application on
+Render for public access and testing. Smart Log Monitoring System Python, Flask, SQLite, HTML, CSS, JavaScript
+● Engineered a real-time web dashboard that ingests, parses, and displays system/application logs with severity-based color coding
+(INFO, WARNING, ERROR, CRITICAL) for rapid issue triage. ● Enabled advanced filtering by log level, full-text search, and time-range queries to streamline debugging and monitoring workflows. ● Configured dynamic alert thresholds triggering email/desktop notifications on error-rate spikes, reducing mean time to detection
+(MTTD) by ~40%. Smart Waste Management System Python, Flask, SQLite, HTML, CSS, JavaScript
+● Built a full-stack web application with role-based access control (admin/user) to track real-time waste collection schedules and
+vehicle movements. ● Designed an admin panel featuring map-based route visualization and live ETA for collection vehicles, improving operational
+transparency and user satisfaction. ● Developed RESTful APIs with Flask and SQLite, paired with a dynamic HTML/CSS/JavaScript frontend for interactive scheduling and
+status updates. CERTIFICATIONS
+Python Fundamentals (Infosys Springboard, Dec 2025) · Introduction to Generative AI (Google Cloud Skill Boost) · Python (Basic)
+(HackerRank) · IEEE Python Certification (IEEE) · Course Completion, IIT Bombay (Spoken Tutorial / NPTEL) · UNIX Certification (Spoken
+Tutorial / IIT Bombay)
+ACHIEVEMENTS
+● IBM Ideathon Finalist — Recognized as a top-performing finalist at the IBM Ideathon organized by Shooting Stars Foundation
+(March 2026) for innovative problem-solving and technical presentation. ● Mirae Asset Scholar — Recipient of the Mirae Asset Scholarship for Undergraduate Students (via Buddy4Study), awarded on
+academic excellence and merit. ● 3-Star HackerRank Rating — Demonstrated strong algorithmic problem-solving in Python and Data Structures. ● 56+ LeetCode Problems Solved — Consistent practice in data structures, algorithms, and competitive programming. ● Consistent Academic Topper — 95%+ in both 10th and 12th board examinations; currently maintaining a 9.45 CGPA in engineering.
