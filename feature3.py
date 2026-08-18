@@ -14,7 +14,7 @@ client = Groq(api_key=os.getenv("groq_key"))
 def extract_job_skills(jobs):
     all_skills = []
 
-    for job in jobs:
+    for job in jobs[:3]:
         job_description = job["description"]
 
         response = client.chat.completions.create(
