@@ -1,49 +1,67 @@
 # feature3.py - Extract required skills from job descriptions using Groq LLM
 
-import os
-import json
-from groq import Groq
-from dotenv import load_dotenv
-from feature1 import extract_skills
-from feature2 import search_jobs
+import logging
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
-load_dotenv()
+from llm_utils import call_llm_for_json
 
-client = Groq(api_key=os.getenv("groq_key"))
+logger = logging.getLogger("skill_gap_analyzer")
 
-def extract_job_skills(jobs):
+MAX_WORKERS = 4  # parallel LLM calls - keeps this fast without hammering the API
+
+
+def _extract_one(job: dict) -> list:
+    """Extract skills from a single job description. Returns [] on failure
+    instead of raising, so one bad job doesn't take down the whole batch."""
+    description = job.get("description", "")
+    title = job.get("title", "unknown")
+
+    if not description:
+        return []
+
+    prompt = f"""Extract all technical skills required from this job description.
+Return ONLY a JSON array of skill names, nothing else, no markdown formatting.
+Example: ["Python", "SQL", "React", "Git"]
+
+Job description:
+{description}"""
+
+    try:
+        skills = call_llm_for_json(prompt)
+        if isinstance(skills, list):
+            return [s.strip() for s in skills if isinstance(s, str) and s.strip()]
+        return []
+    except (RuntimeError, ValueError) as e:
+        logger.warning(f"Skill extraction failed for job '{title}': {e}")
+        return []
+
+
+def extract_job_skills(jobs: list) -> list:
+    """
+    Extract required skills across all job postings. Runs the LLM calls in
+    parallel (previously sequential - 8 jobs meant 8 blocking calls in a row)
+    and tolerates individual failures instead of crashing the whole batch.
+    """
+    if not jobs:
+        return []
+
     all_skills = []
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        futures = {executor.submit(_extract_one, job): job for job in jobs}
+        for future in as_completed(futures):
+            all_skills.extend(future.result())
 
-    for job in jobs[:3]:
-        job_description = job["description"]
-
-        response = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
-            messages=[
-                {
-                    "role": "user",
-                    "content": f"""Extract all technical skills required from this job description.
-                    Return ONLY a JSON array of skills. Nothing else.
-                    Example: ["Python", "SQL", "React", "Git"]
-                    
-                    Job description:
-                    {job_description}"""
-                }
-            ]
-        )
-
-        result = response.choices[0].message.content
-        skills = json.loads(result)
-        all_skills.extend(skills)
-
+    logger.info(f"Extracted {len(all_skills)} total skill mentions across {len(jobs)} jobs")
     return all_skills
 
 
 # test
 if __name__ == "__main__":
-    with open("VIDYA M.txt", "r", encoding="utf8") as f:
-        resume_text = f.read()
-    user_skills = extract_skills(resume_text)
+    from feature1 import extract_skills
+    from feature2 import search_jobs
+
+    sample = "Python, FastAPI, SQL, React, Git"
+    user_skills = extract_skills(sample)
     jobs = search_jobs(user_skills)
     job_skills = extract_job_skills(jobs)
     print("\nAll skills required by market:")
